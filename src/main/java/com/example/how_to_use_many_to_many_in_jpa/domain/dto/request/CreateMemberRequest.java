@@ -20,5 +20,4 @@ public class CreateMemberRequest {
 	String name;
 
 	List<IdRequest> products;
-
 }

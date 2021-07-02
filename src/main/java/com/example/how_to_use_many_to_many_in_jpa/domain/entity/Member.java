@@ -29,8 +29,7 @@ public class Member {
 
 	@JoinColumn(name = "productsId")
 	@ManyToMany(fetch = FetchType.LAZY)
-	List<Product> products;
-
+	private List<Product> products;
 
 	private Member(String name) {
 		this.name = name;

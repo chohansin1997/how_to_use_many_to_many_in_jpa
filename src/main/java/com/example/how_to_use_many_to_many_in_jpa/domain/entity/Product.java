@@ -22,19 +22,19 @@ public class Product {
 
 	@Id
 	@GeneratedValue(strategy = IDENTITY)
-	Long id;
+	private Long id;
 
-	String name;
+	private String name;
+
 	@JoinColumn(name = "membersId")
 	@ManyToMany(fetch = FetchType.LAZY)
-	List<Member> members;
+	private List<Member> members;
 
 	private Product(String name) {
 		this.name = name;
 	}
 
 	public static Product createProduct(String name) {
-
 		return new Product(name);
 	}
 

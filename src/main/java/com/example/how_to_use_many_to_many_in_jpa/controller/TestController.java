@@ -29,6 +29,17 @@ public class TestController {
 	@GetMapping(value = "/")
 	public String create(CreateMemberRequest dto) {
 
+		dto.setName("한신");
+//		List<IdRequest> idRequests = new ArrayList<>();
+//		IdRequest idRequest1 = new IdRequest(1l);
+//		idRequests.add(idRequest1);
+//		IdRequest idRequest2 = new IdRequest(2l);
+//		idRequests.add(idRequest2);
+//		IdRequest idRequest3 = new IdRequest(3l);
+//		idRequests.add(idRequest3);
+//
+//		dto.setProducts(idRequests);
+
 		service.createMember(dto);
 
 		return null;

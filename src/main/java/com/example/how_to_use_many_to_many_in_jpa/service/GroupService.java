@@ -35,10 +35,12 @@ public class GroupService {
 		memberService.create(member);
 		List<Product> products = new ArrayList<>();
 
-//		for (IdRequest id : dto.getProducts()) {
-//			Product product = productService.get(id.getId());
-//			products.add(product);
-//		}
+		if (dto.getProducts() != null) {
+			for (IdRequest id : dto.getProducts()) {
+				Product product = productService.get(id.getId());
+				products.add(product);
+			}
+		}
 		member.updateProducts(products);
 
 		return member.getId();
@@ -56,11 +58,12 @@ public class GroupService {
 
 		productService.create(product);
 		List<Member> Members = new ArrayList<>();
-
-//		for (IdRequest id : dto.getMembers()) {
-//			Member member = memberService.get(id.getId());
-//			Members.add(member);
-//		}
+		if (dto.getMembers() != null) {
+			for (IdRequest id : dto.getMembers()) {
+				Member member = memberService.get(id.getId());
+				Members.add(member);
+			}
+		}
 
 		product.updateMember(Members);
 		return product.getId();
