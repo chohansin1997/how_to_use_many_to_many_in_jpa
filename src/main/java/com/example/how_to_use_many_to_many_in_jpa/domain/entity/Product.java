@@ -26,19 +26,19 @@ public class Product {
 
 	private String name;
 
-	@JoinColumn(name = "membersId")
-	@ManyToMany(fetch = FetchType.LAZY)
-	private List<Member> members;
+	@OneToMany(mappedBy = "product")
+	List<Mapping> mapping;
 
 	private Product(String name) {
 		this.name = name;
 	}
 
 	public static Product createProduct(String name) {
+
 		return new Product(name);
 	}
 
-	public void updateMember(List<Member> members) {
-		this.members = members;
-	}
+//	public void updateMember(List<Member> members) {
+//		this.members = members;
+//	}
 }

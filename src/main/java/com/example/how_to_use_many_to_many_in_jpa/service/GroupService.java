@@ -41,7 +41,7 @@ public class GroupService {
 				products.add(product);
 			}
 		}
-		member.updateProducts(products);
+//		member.updateProducts(products);
 
 		return member.getId();
 	}
@@ -65,7 +65,7 @@ public class GroupService {
 			}
 		}
 
-		product.updateMember(Members);
+//		product.updateMember(Members);
 		return product.getId();
 	}
 

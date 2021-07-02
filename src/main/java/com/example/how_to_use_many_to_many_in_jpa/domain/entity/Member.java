@@ -27,8 +27,9 @@ public class Member {
 
 	private String name;
 
-	@ManyToMany(fetch = FetchType.LAZY, mappedBy ="members" )
-	private List<Product> products;
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
+	private List<Mapping> mapping;
+
 
 	private Member(String name) {
 		this.name = name;
@@ -38,7 +39,7 @@ public class Member {
 		return new Member(name);
 	}
 
-	public void updateProducts(List<Product> products) {
-		this.products = products;
+	public void updateMapping(List<Mapping> mapping) {
+		this.mapping = mapping;
 	}
 }
