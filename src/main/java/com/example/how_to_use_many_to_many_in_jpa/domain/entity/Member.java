@@ -27,8 +27,7 @@ public class Member {
 
 	private String name;
 
-	@JoinColumn(name = "productsId")
-	@ManyToMany(fetch = FetchType.LAZY)
+	@ManyToMany(fetch = FetchType.LAZY, mappedBy ="members" )
 	private List<Product> products;
 
 	private Member(String name) {
