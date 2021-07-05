@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -26,8 +27,8 @@ public class Product {
 
 	private String name;
 
-	@OneToMany(mappedBy = "product")
-	List<Mapping> mapping;
+	@OneToMany(fetch = LAZY, mappedBy = "product")
+	private List<Mapping> mapping;
 
 	private Product(String name) {
 		this.name = name;
@@ -38,7 +39,4 @@ public class Product {
 		return new Product(name);
 	}
 
-//	public void updateMember(List<Member> members) {
-//		this.members = members;
-//	}
 }

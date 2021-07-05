@@ -5,62 +5,66 @@ import com.example.how_to_use_many_to_many_in_jpa.domain.dto.request.CreateProdu
 import com.example.how_to_use_many_to_many_in_jpa.domain.dto.request.IdRequest;
 import com.example.how_to_use_many_to_many_in_jpa.domain.dto.response.MemberResponse;
 import com.example.how_to_use_many_to_many_in_jpa.domain.dto.response.ProductResponse;
+import com.example.how_to_use_many_to_many_in_jpa.domain.entity.Mapping;
 import com.example.how_to_use_many_to_many_in_jpa.domain.entity.Member;
 import com.example.how_to_use_many_to_many_in_jpa.domain.entity.Product;
+import com.example.how_to_use_many_to_many_in_jpa.domain.service.MappingService;
 import com.example.how_to_use_many_to_many_in_jpa.domain.service.MemberService;
 import com.example.how_to_use_many_to_many_in_jpa.domain.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.modelmapper.internal.util.Members;
 import org.springframework.stereotype.Service;
-import org.springframework.ui.ModelMap;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class GroupService {
 
 	private final ModelMapper modelMapper;
-
 	private final MemberService memberService;
-
 	private final ProductService productService;
+	private final MappingService mappingService;
 
+	@Transactional
 	public Long createMember(CreateMemberRequest dto) {
 
 		Member member = Member.createMember(dto.getName());
 
 		memberService.create(member);
-		List<Product> products = new ArrayList<>();
 
 		if (dto.getProducts() != null) {
 			for (IdRequest id : dto.getProducts()) {
 				Product product = productService.get(id.getId());
-				products.add(product);
+
+				mappingService.create(Mapping.createMapping(1l, product, member));
 			}
 		}
-//		member.updateProducts(products);
-
 		return member.getId();
 	}
 
-	public Long getMember(Long id) {
+	public MemberResponse getMember(Long id) {
+		Member member = memberService.get(id);
 		MemberResponse memberResponse = modelMapper.map(memberService.get(id), MemberResponse.class);
 
-		return null;
+		return memberResponse;
 	}
 
+	@Transactional
 	public Long createProduct(CreateProductRequest dto) {
 
 		Product product = Product.createProduct(dto.getName());
 
 		productService.create(product);
+
 		List<Member> Members = new ArrayList<>();
 		if (dto.getMembers() != null) {
 			for (IdRequest id : dto.getMembers()) {
 				Member member = memberService.get(id.getId());
+
 				Members.add(member);
 			}
 		}

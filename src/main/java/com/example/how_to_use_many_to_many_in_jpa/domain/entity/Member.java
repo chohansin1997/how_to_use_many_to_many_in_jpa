@@ -30,7 +30,6 @@ public class Member {
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
 	private List<Mapping> mapping;
 
-
 	private Member(String name) {
 		this.name = name;
 	}

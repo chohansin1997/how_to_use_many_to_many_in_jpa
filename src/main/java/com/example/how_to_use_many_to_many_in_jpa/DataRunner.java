@@ -27,9 +27,11 @@ public class DataRunner implements ApplicationRunner  {
 	@Override
 	public void run(ApplicationArguments args) throws Exception {
 
+		//멤버 엔티티 추가
 		Member member = Member.createMember("한신");
 		memberService.create(member);
 
+		//상품 엔티티 추가
 		Product product1 = Product.createProduct("치킨");
 		productService.create(product1);
 		Product product2 = Product.createProduct("양념 치킨");
@@ -39,6 +41,7 @@ public class DataRunner implements ApplicationRunner  {
 		Product product4 = Product.createProduct("후추 치킨");
 		productService.create(product4);
 
+		//맵핑 엔티티 로 2개 연결
 		Mapping mapping1 = Mapping.createMapping(1l);
 		mapping1.updateProductAndMember(product1, member);
 		mappingService.create(mapping1);

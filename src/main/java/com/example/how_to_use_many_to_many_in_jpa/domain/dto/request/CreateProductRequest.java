@@ -13,8 +13,8 @@ import java.util.List;
 @AllArgsConstructor
 public class CreateProductRequest {
 
-	String name;
+	private String name;
 
-	List<IdRequest> members;
+	private List<IdRequest> members;
 
 }

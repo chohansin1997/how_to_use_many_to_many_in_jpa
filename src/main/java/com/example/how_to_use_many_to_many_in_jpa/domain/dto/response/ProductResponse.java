@@ -19,5 +19,5 @@ public class ProductResponse {
 
 	private String name;
 
-	private List<NameResponse> products;
+	private List<MappingResponse> mapping;
 }

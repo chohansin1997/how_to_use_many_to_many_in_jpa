@@ -1,24 +1,20 @@
 package com.example.how_to_use_many_to_many_in_jpa.domain.dto.response;
 
-import com.example.how_to_use_many_to_many_in_jpa.domain.entity.Product;
+import com.example.how_to_use_many_to_many_in_jpa.domain.dto.request.IdRequest;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-
-import java.util.List;
-
 @Data
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
-public class MemberResponse {
+public class MappingResponse {
 
-	private Long id;
+	private Long sort;
 
-	private String name;
+	private NameResponse member;
 
-	private List<MappingResponse> mapping;
+	private NameResponse product;
 }

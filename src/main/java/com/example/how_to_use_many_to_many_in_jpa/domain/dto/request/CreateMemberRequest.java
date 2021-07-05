@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CreateMemberRequest {
 
-	String name;
+	private String name;
 
-	List<IdRequest> products;
+	private List<IdRequest> Products;
 }

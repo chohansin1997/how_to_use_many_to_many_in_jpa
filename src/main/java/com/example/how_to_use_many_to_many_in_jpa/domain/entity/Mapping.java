@@ -9,6 +9,7 @@ import javax.persistence.*;
 
 import java.util.List;
 
+import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 import static lombok.AccessLevel.PROTECTED;
 
@@ -26,20 +27,30 @@ public class Mapping {
 
 	private Long sort;
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "memberId")
 	private Member member;
 
-	@ManyToOne
+	@ManyToOne(fetch = LAZY)
 	@JoinColumn(name = "productId")
 	private Product product;
 
-	public Mapping(Long sort) {
+	private Mapping(Long sort) {
 		this.sort = sort;
+	}
+
+	public Mapping(Long sort, Product product, Member member) {
+		this.sort = sort;
+		this.product = product;
+		this.member = member;
 	}
 
 	public static Mapping createMapping(Long sort) {
 		return new Mapping(sort);
+	}
+
+	public static Mapping createMapping(Long sort, Product product, Member member) {
+		return new Mapping(sort, product, member);
 	}
 
 	public void updateMember(Member member) {
