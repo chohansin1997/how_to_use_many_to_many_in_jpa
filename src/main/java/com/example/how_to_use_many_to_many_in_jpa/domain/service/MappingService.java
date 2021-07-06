@@ -4,6 +4,7 @@ import com.example.how_to_use_many_to_many_in_jpa.domain.entity.Mapping;
 import com.example.how_to_use_many_to_many_in_jpa.domain.repository.MappingRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
@@ -15,7 +16,7 @@ public class MappingService {
 
 	private final MappingRepository mappingRepository;
 
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Long create(Mapping entity) {
 
 		return mappingRepository.save(entity).getId();

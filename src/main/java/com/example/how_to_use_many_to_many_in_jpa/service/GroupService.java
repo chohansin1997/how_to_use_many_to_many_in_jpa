@@ -14,6 +14,7 @@ import com.example.how_to_use_many_to_many_in_jpa.domain.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
@@ -29,7 +30,7 @@ public class GroupService {
 	private final ProductService productService;
 	private final MappingService mappingService;
 
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Long createMember(CreateMemberRequest dto) {
 
 		Member member = Member.createMember(dto.getName());

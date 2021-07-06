@@ -6,6 +6,7 @@ import com.example.how_to_use_many_to_many_in_jpa.domain.repository.MemberReposi
 import com.example.how_to_use_many_to_many_in_jpa.domain.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
@@ -18,7 +19,7 @@ public class MemberService {
 
 	private final MemberRepository memberRepository;
 
-	@Transactional
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	public Long create(Member entity) {
 
 		return memberRepository.save(entity).getId();
